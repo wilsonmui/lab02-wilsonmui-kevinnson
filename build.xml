@@ -51,7 +51,7 @@
   </target>
 
   <property name="javadoc_absolute_path" location="javadoc"/>
-  <property name="public_javadoc_path" location="../lab01-javadoc-wilsonmui/javadoc"/>
+  <property name="public_javadoc_path" location="../lab02-javadoc-wilsonmui-kevinnson/javadoc"/>
 
   <target name="javadoc" depends="compile" description="generate javadoc">
     <delete>
