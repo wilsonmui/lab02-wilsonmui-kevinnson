@@ -407,7 +407,15 @@ public class Polynomial extends ArrayList<Integer> {
     */
 
     public static int degreeCoeffsLowToHigh(int [] coeffsLowToHigh) {
-	return -42; // @@@ STUB!
+	//return -42; // @@@ STUB!
+	int i = 0;
+	while(i < coeffsLowToHigh.length) {
+	    if(coeffsLowToHigh[i] != 0) {
+		return coeffsLowToHigh[i];
+	    }
+	    i++;
+	}
+	return 0;
     }
 
 
@@ -429,7 +437,15 @@ public class Polynomial extends ArrayList<Integer> {
 
     public static int degreeCoeffsHighToLow(int [] coeffsHighToLow) {
 
-	return -42; // @@@ STUB!
+	//return -42; // @@@ STUB!
+	int i = 0;
+	while (i < coeffsHighToLow.length) {
+	    if(coeffsHighToLow[i] != 0) { //finds the first nonzero degree in array
+		return coeffsHighToLow[i];
+	    }
+	    i++;
+	}
+	return 0;
     }
 
 
@@ -444,8 +460,16 @@ public class Polynomial extends ArrayList<Integer> {
     */
 
     public static int [] lowToHigh(int [] coeffsHighToLow) {	
-	int [] stub = new int [] {-42, -42, -42};
-	return stub;
+	//int [] stub = new int [] {-42, -42, -42};
+	//return stub;
+	//reversing the array makes the coefficients go from high to low to low to high
+	int length = coeffsHighToLow.length;
+	for(int i = 0; i < length/2; i++) {
+	    int store = coeffsHighToLow[i];
+	    coeffsHighToLow[i] = coeffsHighToLow[length-i-1];
+	    coeffsHighToLow[length-i-1] = store;
+	}
+	return coeffsHighToLow;
     }
 
 
@@ -460,8 +484,16 @@ public class Polynomial extends ArrayList<Integer> {
     */
 
     public static int [] highToLow(int [] coeffsLowToHigh) {
-	int [] stub = new int [] {-42, -42, -42};
-	return stub;
+	//int [] stub = new int [] {-42, -42, -42};
+	//return stub;
+	//reversing the array makes low to high to high to low
+	int length = coeffsLowToHigh.length;
+	for(int i = 0; i < length/2; i++) {
+	    int store = coeffsLowToHigh[i];
+	    coeffsLowToHigh[i] = coeffsLowToHigh[length-i-1];
+	    coeffsLowToHigh[length-i-1] = store;
+	}
+	return coeffsLowToHigh;
     }
     
     /** return a new Polynomial which has as its value the 
