@@ -125,7 +125,66 @@ public class Polynomial extends ArrayList<Integer> {
      */
 
     public String toString() {
-	String result = "stub"; // @@@ TODO: FIX ME!
+	//String result = "stub"; // @@@ TODO: FIX ME!
+	int i = 0;
+	int length = coeffsHighToLow.length;
+	int exponent = 0;
+	String result = "";
+	//if (coeffsHighToLow.length == 1 && coeffsHighToLow[i] != 0) {
+	   
+	while (i < coeffsHighToLow.length) {
+	    exponent = length - i;
+	    if(coeffsHighToLow[i] == 0) {
+		i++;
+	    }
+	    else if(exponent == 0) {
+		if(coeffsHighToLow[i] < 0) {
+		    result += " - " + coeffsHighToLow[i];
+		}
+		else {
+		    result += " + " + coeffsHighToLow[i];
+		}
+	    }
+	    else if(coeffsHighToLow[i] < 0) {
+		if(i == 0) {
+		    if(exponent == 1) {
+			result += "-" + coeffsHighToLow[i] + "x";
+		    }
+		    else {
+			result += "-" + coeffsHighToLow[i] + "x^" + exponent;
+		    }
+		}
+                else {
+		    if(exponent == 1) {
+			result += " - " + coeffsHighToLow[i] + "x";
+		    }
+		    else {
+			result += " - " + coeffsHighToLow[i] + "x^" + exponent;
+		    }
+		}
+	    }
+	    else {
+		if(exponent == 1) {
+		    result += " + " + coeffsHighToLow[i] + "x";
+		}
+		else if(i == 0) {
+		    if(exponent == 1) {
+			result += coeffsHighToLow[i] + "x";
+		    }
+		    else {
+			result += coeffsHighToLow[i] + "x^" + exponent;
+		    }
+		}
+		else {
+		    if(exponent == 1) {
+			result += " + " + coeffsHighToLow[i] + "x";
+		    }
+		    else {
+			result += " + " + coeffsHighToLow[i] + "x^" + exponent;
+		    }
+		}
+	    }
+	}
 	return result;
     }
 
@@ -383,10 +442,23 @@ public class Polynomial extends ArrayList<Integer> {
 	// @@@ TODO: Check the size of each ArrayList.  
 	// If they don't match, return false
 
+	if(p.length != coeffsHighToLow.length) {
+	    return false;
+	}
+	
 	// @@@ TODO: If the sizes match, check whether the
 	// values match.  If not, return False.  Otherwise, return true.
 
-	return false; // @@@ STUB
+	else {
+	    for(int i = 0; i < p.length; i++) {
+		if(p.coeffsHighToLow[i] != coeffsHighToLow[i]) {
+		    return false;
+		}
+	    }
+	    return true;
+	}
+	
+	//return false; // @@@ STUB
 	
     }
 
@@ -408,12 +480,12 @@ public class Polynomial extends ArrayList<Integer> {
 
     public static int degreeCoeffsLowToHigh(int [] coeffsLowToHigh) {
 	//return -42; // @@@ STUB!
-	int i = 0;
-	while(i < coeffsLowToHigh.length) {
+	int i = coeffsLowToHigh.legnth - 1; //start at the end of the array to find highest
+	while(i >= 0) {
 	    if(coeffsLowToHigh[i] != 0) {
-		return coeffsLowToHigh[i];
+		return i;
 	    }
-	    i++;
+	    i--;
 	}
 	return 0;
     }
@@ -440,8 +512,8 @@ public class Polynomial extends ArrayList<Integer> {
 	//return -42; // @@@ STUB!
 	int i = 0;
 	while (i < coeffsHighToLow.length) {
-	    if(coeffsHighToLow[i] != 0) { //finds the first nonzero degree in array
-		return coeffsHighToLow[i];
+	    if(coeffsHighToLow[i] != 0) { //finds the first nonzero coefficient in array
+		return coeffsHighToLow.length-i;
 	    }
 	    i++;
 	}
