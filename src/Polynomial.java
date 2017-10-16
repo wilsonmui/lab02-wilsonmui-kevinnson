@@ -20,7 +20,7 @@ import java.text.DecimalFormat;
     should be of size exactly d+1.</p>
 
     @author P. Conrad
-    @author TODO: FILL IN YOUR NAME(S) HERE
+    @author TODO: Kevin Son, Wilson Mui
     @version UCSB, CS56, W14
 */
 
@@ -125,13 +125,66 @@ public class Polynomial extends ArrayList<Integer> {
      */
 
     public String toString() {
+    
+        int i = 0;
+        int length = this.size();
+        int exponent = 0;
+        int coeff = 0;
+        String result = "";
+        
+        //Poly stored from low to high. Must print high to low.
+        /*
+         special cases:
+         If string is empty, do not precede with '+'.
+         There should be spacing in front of and behind '+' or '-'.
+         Don't include '+' on leading coeff.
+         Don't include ^1. (Test case earlier to catch it?)
+         Check for positive or negative.
+         Don;t include coeff 1.
+         
+         */
+        /*
+        for (int k = this.size-1; k >= 0; k--){
+            exponent = k;
+            coeff = this.get(k);
+            //exclude doing something if coeff is 0
+            //if coeff is negative and first coeff
+            if (coeff < 0 && result.isEmpty()){
+                if (coeff == -1){
+                    result += "-x^" + exponent;
+                }
+                else{
+                    result += "-" + coeff + "x^" + exponent;
+                }
+            }
+            else if (coeff < 0){
+                if (coeff == -1){
+                    result += " - "
+                }
+            }
+            // if positive and first coeff
+            else if (coeff > 0 && result.isEmpty()){
+                if (coeff == 1){
+                    result += "x^" + exponent;
+                }
+                else{
+                    result += coeff + "x^" + exponent;
+                }
+            }
+         
+            
+        }
+         */
+        
+    /*
 	//String result = "stub"; // @@@ TODO: FIX ME!
 	int i = 0;
 	int length = coeffsHighToLow.length;
 	int exponent = 0;
 	String result = "";
 	//if (coeffsHighToLow.length == 1 && coeffsHighToLow[i] != 0) {
-	   
+	
+    
 	while (i < coeffsHighToLow.length) {
 	    exponent = length - i;
 	    if(coeffsHighToLow[i] == 0) {
@@ -185,7 +238,13 @@ public class Polynomial extends ArrayList<Integer> {
 		}
 	    }
 	}
+     
+        
 	return result;
+     */
+        
+        result = "stub";
+        return result;
     }
 
 
@@ -442,7 +501,7 @@ public class Polynomial extends ArrayList<Integer> {
 	// @@@ TODO: Check the size of each ArrayList.  
 	// If they don't match, return false
 
-	if(p.length != coeffsHighToLow.length) {
+	if(p.size() != this.size()) {
 	    return false;
 	}
 	
@@ -450,8 +509,8 @@ public class Polynomial extends ArrayList<Integer> {
 	// values match.  If not, return False.  Otherwise, return true.
 
 	else {
-	    for(int i = 0; i < p.length; i++) {
-		if(p.coeffsHighToLow[i] != coeffsHighToLow[i]) {
+	    for(int i = 0; i < p.size(); i++) {
+		if(p.get(i) != this.get(i)) {
 		    return false;
 		}
 	    }
@@ -480,7 +539,7 @@ public class Polynomial extends ArrayList<Integer> {
 
     public static int degreeCoeffsLowToHigh(int [] coeffsLowToHigh) {
 	//return -42; // @@@ STUB!
-	int i = coeffsLowToHigh.legnth - 1; //start at the end of the array to find highest
+	int i = coeffsLowToHigh.length - 1; //start at the end of the array to find highest
 	while(i >= 0) {
 	    if(coeffsLowToHigh[i] != 0) {
 		return i;
@@ -507,7 +566,7 @@ public class Polynomial extends ArrayList<Integer> {
 
     */
 
-    public static int degreeCoeffsHighToLow(int [] coeffsHighToLow) {
+   public static int degreeCoeffsHighToLow(int [] coeffsHighToLow) {
 
 	//return -42; // @@@ STUB!
 	int i = 0;
@@ -535,6 +594,8 @@ public class Polynomial extends ArrayList<Integer> {
 	//int [] stub = new int [] {-42, -42, -42};
 	//return stub;
 	//reversing the array makes the coefficients go from high to low to low to high
+        
+    
 	int length = coeffsHighToLow.length;
 	for(int i = 0; i < length/2; i++) {
 	    int store = coeffsHighToLow[i];
@@ -542,6 +603,8 @@ public class Polynomial extends ArrayList<Integer> {
 	    coeffsHighToLow[length-i-1] = store;
 	}
 	return coeffsHighToLow;
+        
+        
     }
 
 
