@@ -38,12 +38,12 @@ public class Polynomial extends ArrayList<Integer> {
      */
     
     public Polynomial() {
-	// invoke superclass constructor, i.e. the
-	// constructor of ArrayList<Integer> with 
-	super(1); // we want capacity at least 1 
-	// parameter 1 (capacity, not size)
-	this.add(0,0); // uses autoboxing (index, value)
-	
+        // invoke superclass constructor, i.e. the
+        // constructor of ArrayList<Integer> with
+        super(1); // we want capacity at least 1
+        // parameter 1 (capacity, not size)
+        this.add(0,0); // uses autoboxing (index, value)
+        
     }
 
     /**
@@ -88,15 +88,15 @@ public class Polynomial extends ArrayList<Integer> {
     
     public Polynomial(int [] coeffsHighToLow) {
 	
-	if (coeffsHighToLow.length==0) {
-	    coeffsHighToLow = new int [] {0};
-	}
+        if (coeffsHighToLow.length==0) {
+            coeffsHighToLow = new int [] {0};
+        }
 
-	int [] coeffsLowToHigh = Polynomial.lowToHigh(coeffsHighToLow);
+        int [] coeffsLowToHigh = Polynomial.lowToHigh(coeffsHighToLow);
 
-	for (int i=0;i<coeffsLowToHigh.length;i++) {
-	    this.add(i,coeffsLowToHigh[i]);
-	}
+        for (int i=0;i<coeffsLowToHigh.length;i++) {
+            this.add(i,coeffsLowToHigh[i]);
+        }
     }
 
 
@@ -155,14 +155,57 @@ public class Polynomial extends ArrayList<Integer> {
         
         for (int i = 0; i < t4Array.length; i++){
             exponent = t4Array.length-1-i;
-            if (exponent == 1 && t4Array[i] != 0 && result.isEmpty()){
+            coeff = t4Array[i];
+            //deal with start of polynomial
+            if (exponent == 1 && coeff != 0 && result.isEmpty()){
                 if(t4Array[i]==1){
                     result += "x";
                 }
                 else{
-                    result += t4Array[i] + "x";
+                    result += coeff + "x";
                 }
             }
+            else if(coeff != 0 && result.isEmpty()){
+                if(coeff == 1){
+                    result += "x^" + exponent;
+                }
+                else{
+                    result += coeff + "x^" + exponent;
+                }
+            }
+            else if(exponent == 0 && coeff != 0){
+                if (coeff > 0){
+                    result += " + ";
+                }
+                if (coeff < 0){
+                    result += " - ";
+                }
+                if (Math.abs(coeff)==1){
+                    result += "1";
+                }
+                else{
+                    result += Math.abs(coeff);
+                }
+            }
+            else if(coeff != 0){
+                if (coeff > 0){
+                    result += " + ";
+                }
+                if (coeff < 0){
+                    result += " - ";
+                }
+                if (Math.abs(coeff)==1){
+                    result += "1";
+                }
+                if (exponent == 1){
+                    result += Math.abs(coeff) + "x";
+                }
+                else{
+                    result += Math.abs(coeff) + "x^" + exponent;
+                }
+                
+            }
+            
         }
         
         
