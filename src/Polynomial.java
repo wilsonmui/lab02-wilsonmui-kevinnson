@@ -157,22 +157,36 @@ public class Polynomial extends ArrayList<Integer> {
             exponent = t4Array.length-1-i;
             coeff = t4Array[i];
             //deal with start of polynomial
+            if(t4Array.length==1 && coeff == 0){
+                result += "0";
+                break;
+            }
             if (exponent == 1 && coeff != 0 && result.isEmpty()){
-                if(t4Array[i]==1){
+                if(coeff==1){
                     result += "x";
+                }
+                else if(coeff==-1){
+                    result += "-x";
                 }
                 else{
                     result += coeff + "x";
                 }
             }
             else if(coeff != 0 && result.isEmpty()){
-                if(coeff == 1){
+                if(exponent == 0){
+                    result += coeff;
+                }
+                else if(coeff == 1){
                     result += "x^" + exponent;
+                }
+                else if(coeff == -1){
+                    result += "-x^" + exponent;
                 }
                 else{
                     result += coeff + "x^" + exponent;
                 }
             }
+            //case where exponent == 0
             else if(exponent == 0 && coeff != 0){
                 if (coeff > 0){
                     result += " + ";
@@ -194,56 +208,28 @@ public class Polynomial extends ArrayList<Integer> {
                 if (coeff < 0){
                     result += " - ";
                 }
-                if (Math.abs(coeff)==1){
-                    result += "1";
-                }
+                
                 if (exponent == 1){
-                    result += Math.abs(coeff) + "x";
+                    if(Math.abs(coeff) == 1){
+                        result += "x";
+                    }
+                    else{
+                        result += Math.abs(coeff) + "x";
+                    }
                 }
                 else{
-                    result += Math.abs(coeff) + "x^" + exponent;
+                    if(Math.abs(coeff) == 1){
+                        result += "x^" + exponent;
+                    }
+                    else{
+                        result += Math.abs(coeff) + "x^" + exponent;
+                    }
                 }
                 
             }
             
         }
         
-        
-        
-        
-        
-        /*
-        for (int k = this.size-1; k >= 0; k--){
-            exponent = k;
-            coeff = this.get(k);
-            //exclude doing something if coeff is 0
-            //if coeff is negative and first coeff
-            if (coeff < 0 && result.isEmpty()){
-                if (coeff == -1){
-                    result += "-x^" + exponent;
-                }
-                else{
-                    result += "-" + coeff + "x^" + exponent;
-                }
-            }
-            else if (coeff < 0){
-                if (coeff == -1){
-                    result += " - "
-                }
-            }
-            // if positive and first coeff
-            else if (coeff > 0 && result.isEmpty()){
-                if (coeff == 1){
-                    result += "x^" + exponent;
-                }
-                else{
-                    result += coeff + "x^" + exponent;
-                }
-            }
-         
-            
-        }
-         */
         
     /*
 	//String result = "stub"; // @@@ TODO: FIX ME!
@@ -312,7 +298,6 @@ public class Polynomial extends ArrayList<Integer> {
 	return result;
      */
         
-        result = "stub";
         return result;
     }
 
