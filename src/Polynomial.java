@@ -674,7 +674,7 @@ public class Polynomial extends ArrayList<Integer> {
 	//return stub;
 
     
-        
+    /*
 	//comparing the lengths of both polynomials
 	int length1 = this.getDegree() + 1;
 	int length2 = p.getDegree() + 1;
@@ -690,7 +690,10 @@ public class Polynomial extends ArrayList<Integer> {
 	    for(int j = length1; j < length; j++) {
 		poly1[j] = 0;
 		} */
-	}
+	/*
+    }
+    
+
 	else {
 	    length = length1;
 	}
@@ -726,14 +729,81 @@ public class Polynomial extends ArrayList<Integer> {
 	int[] final_poly2 = highToLow(poly6);
 	*/
 	//new polynomial for all the sums with the appropriate length
-	Polynomial sum = new Polynomial (new int [length]);
+	/*
+    Polynomial sum = new Polynomial (new int [length]);
 	for(int m = 0; m < length; m++) {
         sum.add(m, (this.get(m)+p.get(m)));
         
     }
 
 	return sum;
-	
+	*/
+    
+        int length1 = this.size();
+        int length2 = p.size();
+        int length = 0;
+        
+        int[] temp = new int[0];
+        int[] sum = new int[0];
+        Polynomial Psum;
+        int gap = 0;
+        
+        //make length = largest poly
+        //make temp into a Poly similar to shorter poly, but with trailing 0's
+        if(length2>length1){
+            
+            length = length2;
+            gap = length2 - length1;
+            
+            temp = new int[length];
+            sum = new int[length];
+            
+            for( int i = 0; i < length1; i++ ){
+                temp[i] = this.get(i);
+            }
+            for (int k = 0; k < gap; k++){
+                temp[length1+k] = 0;
+            }
+            
+            for ( int j = 0; j<length; j++){
+                sum[j] = p.get(j) + temp[j];
+            }
+            
+        }
+        else if(length2<length1){
+            length = length1;
+            gap = length1-length2;
+            
+            temp = new int[length];
+            sum = new int[length];
+            
+            for( int i = 0; i < length2; i++ ){
+                temp[i] = p.get(i);
+            }
+            for (int k = 0; k < gap; k++){
+                temp[length2+k] = 0;
+            }
+            
+            for ( int j = 0; j<length; j++){
+                sum[j] = this.get(j) + temp[j];
+            }
+        }
+        else if(length1==length2){
+            length = length1;
+            
+            sum = new int[length];
+            
+            for ( int j = 0; j<length; j++){
+                sum[j] = this.get(j) + p.get(j);
+            }
+        }
+        
+        int[] tSum = highToLow(sum);
+        
+        Psum = new Polynomial(tSum);
+        
+        return Psum;
+    
 	    
     }
 
