@@ -21,7 +21,7 @@ import java.text.DecimalFormat;
 
     @author P. Conrad
     @author TODO: Kevin Son, Wilson Mui
-    @version UCSB, CS56, W14
+    @version UCSB, CS56, W17
 */
 
 public class Polynomial extends ArrayList<Integer> {
@@ -737,8 +737,68 @@ public class Polynomial extends ArrayList<Integer> {
     */
 
     public Polynomial plus (Polynomial p) {	
-	Polynomial stub = new Polynomial (new int [] {-42});
-	return stub;
+	//Polynomial stub = new Polynomial (new int [] {-42});
+	//return stub;
+
+	//comparing the lengths of both polynomials
+	int length1 = this.getDegree() + 1;
+	int length2 = p.getDegree() + 1;
+
+        int length = 0;
+	//choosing the greatest length to account the highest degrees
+	if(length1 < length2) {
+	    length = length2; //making the same length for both polynomials
+	    /*int[] poly1 = new int[length]; 
+	    for(int i = 0; i < length1; i++) {
+		poly1[i] = this.get(i);
+	    } //adding trailing 0's to match the other polynomial's degree
+	    for(int j = length1; j < length; j++) {
+		poly1[j] = 0;
+		} */
+	}
+	else {
+	    length = length1;
+	}
+
+	int[] poly = new int[length];
+	if(length == length1) {
+	    for(int i = 0; i < length2; i++) {
+		poly[i] = p.get(i);
+	    }
+	    for(int j = length2; j < length; j++) {
+		poly[j] = 0;
+	    }
+	}
+	else {
+	    for(int k = 0; k < length2; k++) {
+		poly[k] = this.get(k);
+	    }
+	    for(int l = length1; l < length; l++) {
+		poly[l] = 0;
+	    }
+	}
+	
+	/*
+	int[] poly1 = new int[this.size()];
+	int[] poly2 = new int[p.size()];
+
+	int[] poly3 = highToLow(poly1);
+	int[] poly4 = lowToHigh(poly3);
+	int[] final_poly1 = highToLow(poly4);
+
+	int[] poly5 = highToLow(poly2);
+	int[] poly6 = lowToHigh(poly5);
+	int[] final_poly2 = highToLow(poly6);
+	*/
+	//new polynomial for all the sums with the appropriate length
+	Polynomial sum = new Polynomial (new int [length]);
+	for(int m = 0; m < length; m++) {
+	    sum[m] = this.get(m) + p.get(m);
+	}
+
+	return sum;
+	    
+	    
     }
 
     /** return a new Polynomial which has as its value the 
@@ -751,8 +811,19 @@ public class Polynomial extends ArrayList<Integer> {
 
     public Polynomial times (Polynomial p) {
 	
-	Polynomial stub = new Polynomial (new int [] {-42});
-	return stub; // @@@ TODO: FIXME!
+	//Polynomial stub = new Polynomial (new int [] {-42});
+	//return stub; // @@@ TODO: FIXME!
+
+	int length = this.getDegree() + p.getDegree() + 1;
+	
+	Polynomial product = new Polynomial (new int [length]);
+	for (int i = 0; i < this.getDegree() + 1; i++) {
+	    for (int j = 0; j < p.getDegree() + 1; j++) {
+		poly[i + j] += this.get(i) * p.get(j);
+	    }
+	}
+
+	return product;
 
     }
 
@@ -767,9 +838,12 @@ public class Polynomial extends ArrayList<Integer> {
 
     public Polynomial minus (Polynomial p) {
 
-	Polynomial stub = new Polynomial (new int [] {-42});
-	return stub; // @@@ TODO: FIXME!
-
+	//Polynomial stub = new Polynomial (new int [] {-42});
+	//return stub; // @@@ TODO: FIXME!
+	
+	for(int i = 0; i < p.getDegree() + 1; i++) {
+	    
+	
     }
 
     /** Print Usage message for Polynomial main 
