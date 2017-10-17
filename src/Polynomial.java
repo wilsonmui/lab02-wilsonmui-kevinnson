@@ -231,73 +231,6 @@ public class Polynomial extends ArrayList<Integer> {
         }
         
         
-    /*
-	//String result = "stub"; // @@@ TODO: FIX ME!
-	int i = 0;
-	int length = coeffsHighToLow.length;
-	int exponent = 0;
-	String result = "";
-	//if (coeffsHighToLow.length == 1 && coeffsHighToLow[i] != 0) {
-	
-    
-	while (i < coeffsHighToLow.length) {
-	    exponent = length - i;
-	    if(coeffsHighToLow[i] == 0) {
-		i++;
-	    }
-	    else if(exponent == 0) {
-		if(coeffsHighToLow[i] < 0) {
-		    result += " - " + coeffsHighToLow[i];
-		}
-		else {
-		    result += " + " + coeffsHighToLow[i];
-		}
-	    }
-	    else if(coeffsHighToLow[i] < 0) {
-		if(i == 0) {
-		    if(exponent == 1) {
-			result += "-" + coeffsHighToLow[i] + "x";
-		    }
-		    else {
-			result += "-" + coeffsHighToLow[i] + "x^" + exponent;
-		    }
-		}
-                else {
-		    if(exponent == 1) {
-			result += " - " + coeffsHighToLow[i] + "x";
-		    }
-		    else {
-			result += " - " + coeffsHighToLow[i] + "x^" + exponent;
-		    }
-		}
-	    }
-	    else {
-		if(exponent == 1) {
-		    result += " + " + coeffsHighToLow[i] + "x";
-		}
-		else if(i == 0) {
-		    if(exponent == 1) {
-			result += coeffsHighToLow[i] + "x";
-		    }
-		    else {
-			result += coeffsHighToLow[i] + "x^" + exponent;
-		    }
-		}
-		else {
-		    if(exponent == 1) {
-			result += " + " + coeffsHighToLow[i] + "x";
-		    }
-		    else {
-			result += " + " + coeffsHighToLow[i] + "x^" + exponent;
-		    }
-		}
-	    }
-	}
-     
-        
-	return result;
-     */
-        
         return result;
     }
 
@@ -740,6 +673,8 @@ public class Polynomial extends ArrayList<Integer> {
 	//Polynomial stub = new Polynomial (new int [] {-42});
 	//return stub;
 
+    
+        
 	//comparing the lengths of both polynomials
 	int length1 = this.getDegree() + 1;
 	int length2 = p.getDegree() + 1;
@@ -793,11 +728,12 @@ public class Polynomial extends ArrayList<Integer> {
 	//new polynomial for all the sums with the appropriate length
 	Polynomial sum = new Polynomial (new int [length]);
 	for(int m = 0; m < length; m++) {
-	    sum[m] = this.get(m) + p.get(m);
-	}
+        sum.add(m, (this.get(m)+p.get(m)));
+        
+    }
 
 	return sum;
-	    
+	
 	    
     }
 
@@ -819,7 +755,8 @@ public class Polynomial extends ArrayList<Integer> {
 	Polynomial product = new Polynomial (new int [length]);
 	for (int i = 0; i < this.getDegree() + 1; i++) {
 	    for (int j = 0; j < p.getDegree() + 1; j++) {
-		poly[i + j] += this.get(i) * p.get(j);
+            //product[i + j] += this.get(i) * p.get(j);
+            product.add(i+j, this.get(i)*p.get(j));
 	    }
 	}
 
@@ -841,8 +778,8 @@ public class Polynomial extends ArrayList<Integer> {
 	//Polynomial stub = new Polynomial (new int [] {-42});
 	//return stub; // @@@ TODO: FIXME!
 	Polynomial negative = new Polynomial (new int [] {-1});
-	Polynomial neg = new Polynomial;
-	Polynomial diff = new Polynomial;
+	Polynomial neg = new Polynomial();
+	Polynomial diff = new Polynomial();
 	neg = p.times(negative);
 	diff = this.plus(p);
 	return diff;
