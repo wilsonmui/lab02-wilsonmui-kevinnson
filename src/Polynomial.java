@@ -838,11 +838,14 @@ public class Polynomial extends ArrayList<Integer> {
 
     public Polynomial minus (Polynomial p) {
 
-	Polynomial stub = new Polynomial (new int [] {-42});
-	return stub; // @@@ TODO: FIXME!
-	
-	//for(int i = 0; i < p.getDegree() + 1; i++) {
-	    
+	//Polynomial stub = new Polynomial (new int [] {-42});
+	//return stub; // @@@ TODO: FIXME!
+	Polynomial negative = new Polynomial (new int [] {-1});
+	Polynomial neg = new Polynomial;
+	Polynomial diff = new Polynomial;
+	neg = p.times(negative);
+	diff = this.plus(p);
+	return diff;
 	
     }
 
