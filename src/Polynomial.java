@@ -126,7 +126,6 @@ public class Polynomial extends ArrayList<Integer> {
 
     public String toString() {
     
-        int i = 0;
         int length = this.size();
         int exponent = 0;
         int coeff = 0;
@@ -145,7 +144,11 @@ public class Polynomial extends ArrayList<Integer> {
          */
         // this has coeff from low to high
         //hopefully this removes preceding and trailing zeroes
-        int[] tArray = this.toArray(new int[this.size()]);
+        int[] tArray = new int[this.size()];
+        for ( int j=0; j < this.size(); j++){
+            tArray[j] = this.get(j);
+        }
+        
         int[] t2Array = highToLow(tArray);
         int[] t3Array = lowToHigh(t2Array);
         int[] t4Array = highToLow(t3Array);
@@ -595,7 +598,7 @@ public class Polynomial extends ArrayList<Integer> {
 	int i = 0;
 	while (i < coeffsHighToLow.length) {
 	    if(coeffsHighToLow[i] != 0) { //finds the first nonzero coefficient in array
-		return coeffsHighToLow.length-i;
+            return coeffsHighToLow.length-i-1;
 	    }
 	    i++;
 	}
@@ -619,6 +622,7 @@ public class Polynomial extends ArrayList<Integer> {
 	//reversing the array makes the coefficients go from high to low to low to high
     //idea for removing preceding zeroes from stackoverflow
         int gap = 0;
+        int[] newArray;
         
         for ( int k : coeffsHighToLow){
             if (k!=0){
@@ -629,12 +633,12 @@ public class Polynomial extends ArrayList<Integer> {
         
         //if coeffsHighToLow is all zeros, return array {0}
         if( gap == coeffsHighToLow.length ){
-            int[] newArray = new int[] {0};
+            newArray = new int[] {0};
         }
         else{
             
             //create new array without leading 0's
-            int[] newArray = new int[coeffsHighToLow.length - gap];
+            newArray = new int[coeffsHighToLow.length - gap];
             for(int m = 0; m < newArray.length; m++){
                 newArray[m] = coeffsHighToLow[m + gap];
             }
@@ -666,7 +670,7 @@ public class Polynomial extends ArrayList<Integer> {
 	//int [] stub = new int [] {-42, -42, -42};
 	//return stub;
 	//reversing the array makes low to high to high to low
-        
+        int[] newArray;
         int gap = 0;
         for (int k = (coeffsLowToHigh.length-1); k >= 0; k--){
             if (coeffsLowToHigh[k] != 0){
@@ -676,11 +680,11 @@ public class Polynomial extends ArrayList<Integer> {
         }
         
         if (gap == coeffsLowToHigh.length){
-            int[] newArray = new int[] {0};
+            newArray = new int[] {0};
         }
         else{
             
-            int[] newArray = new int[ coeffsLowToHigh.length - gap];
+            newArray = new int[ coeffsLowToHigh.length - gap];
             
             for( int m = 0; m < newArray.length; m++){
                 newArray[m] = coeffsLowToHigh[m];
