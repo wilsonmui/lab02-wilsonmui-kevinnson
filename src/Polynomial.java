@@ -819,7 +819,7 @@ public class Polynomial extends ArrayList<Integer> {
 	
 	//Polynomial stub = new Polynomial (new int [] {-42});
 	//return stub; // @@@ TODO: FIXME!
-
+/*
 	int length = this.getDegree() + p.getDegree() + 1;
 	
 	Polynomial product = new Polynomial (new int [length]);
@@ -831,7 +831,23 @@ public class Polynomial extends ArrayList<Integer> {
 	}
 
 	return product;
-
+*/
+        int tsize = this.size();
+        int psize = p.size();
+        int[] prod = new int[tsize+psize-1];
+        for (int i=0; i<prod.length; i++){
+            prod[i] = 0;
+        }
+        for (int k=0; k<tsize; k++){
+            for(int j=0; j<psize; j++){
+                prod[k+j] += this.get(k) * p.get(j);
+            }
+        }
+        
+        int[] tprod = highToLow(prod);
+        return new Polynomial(tprod);
+        
+        
     }
 
     /** return a new Polynomial which has as its value the 
@@ -847,12 +863,18 @@ public class Polynomial extends ArrayList<Integer> {
 
 	//Polynomial stub = new Polynomial (new int [] {-42});
 	//return stub; // @@@ TODO: FIXME!
+        /*
 	Polynomial negative = new Polynomial (new int [] {-1});
 	Polynomial neg = new Polynomial();
 	Polynomial diff = new Polynomial();
 	neg = p.times(negative);
 	diff = this.plus(p);
 	return diff;
+         */
+        
+        Polynomial negative = new Polynomial(new int[] {-1});
+        Polynomial negP = p.times(negative);
+        return this.plus(negP);
 	
     }
 
